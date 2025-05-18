@@ -1,0 +1,51 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "azuredp203"
+		},
+		"FileServer1_password": {
+			"value": ""
+		},
+		"FileServer2_password": {
+			"value": ""
+		},
+		"Oracle1_connectionString": {
+			"value": ""
+		},
+		"SqlServer1_connectionString": {
+			"value": ""
+		},
+		"SqlServer2_password": {
+			"value": ""
+		},
+		"FileServer1_properties_typeProperties_host": {
+			"value": "C:\\Users\\shasuruvalli\\Documents\\Destination"
+		},
+		"FileServer1_properties_typeProperties_userId": {
+			"value": "GLS\\shasuruvalli"
+		},
+		"FileServer2_properties_typeProperties_host": {
+			"value": "C:\\Attachments"
+		},
+		"FileServer2_properties_typeProperties_userId": {
+			"value": "GLS\\shasuruvalli"
+		},
+		"HttpServer1_properties_typeProperties_url": {
+			"value": "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports/"
+		},
+		"SqlServer2_properties_typeProperties_server": {
+			"value": "SUBASH"
+		},
+		"SqlServer2_properties_typeProperties_database": {
+			"value": "Bronze"
+		},
+		"SqlServer2_properties_typeProperties_userName": {
+			"value": "adf_admin"
+		},
+		"source_properties_typeProperties_url": {
+			"value": "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports/"
+		}
+	}
+}
