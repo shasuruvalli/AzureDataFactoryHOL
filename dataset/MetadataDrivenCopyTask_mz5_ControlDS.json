@@ -1,0 +1,19 @@
+{
+	"name": "MetadataDrivenCopyTask_mz5_ControlDS",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SqlServer2",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "MetadataDrivenCopyTask_mz5_20250518"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "job_step_param"
+		}
+	}
+}
