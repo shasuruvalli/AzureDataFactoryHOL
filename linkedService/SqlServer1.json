@@ -5,8 +5,8 @@
 		"annotations": [],
 		"type": "SqlServer",
 		"typeProperties": {
-			"connectionString": "integrated security=False;data source=SUBASH;initial catalog=Bronze;user id=adf_admin",
-			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiJlOGFiMTY1My0zOTY4LTQzOGItOGRhNC00MDgxNDM4YmUyMmIiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+			"connectionString": "integrated security=False;data source=SUBASH;initial catalog=AdventureWorks2022;user id=adf_admin",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiI2ZWU3NDc2Yi02YzY5LTRmMmMtYWNlZS05MWEyYzY5ZWQ5YmQiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
 		},
 		"connectVia": {
 			"referenceName": "SHIR",
