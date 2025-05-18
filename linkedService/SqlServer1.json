@@ -5,12 +5,11 @@
 		"annotations": [],
 		"type": "SqlServer",
 		"typeProperties": {
-			"connectionString": "integrated security=True;data source=SUBHASHH-JB\\DEV;initial catalog=CCE_DMTA_DEV",
-			"userName": "GLS\\shasuruvalli",
-			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiI2NmY4YmE2MC1mY2U2LTQyMGYtOGVhZC05ZDQxYjJhOTU4NTIiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+			"connectionString": "integrated security=False;data source=SUBASH;initial catalog=Bronze;user id=adf_admin",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiJlOGFiMTY1My0zOTY4LTQzOGItOGRhNC00MDgxNDM4YmUyMmIiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
 		},
 		"connectVia": {
-			"referenceName": "SelfHosted-IR",
+			"referenceName": "SHIR",
 			"type": "IntegrationRuntimeReference"
 		}
 	}
