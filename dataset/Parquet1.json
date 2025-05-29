@@ -2,7 +2,7 @@
 	"name": "Parquet1",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "FileServer3",
+			"referenceName": "FileServer4",
 			"type": "LinkedServiceReference"
 		},
 		"annotations": [],
