@@ -11,6 +11,9 @@
 		"FileServer2_password": {
 			"value": ""
 		},
+		"FileServer3_password": {
+			"value": ""
+		},
 		"Oracle1_connectionString": {
 			"value": ""
 		},
@@ -31,6 +34,12 @@
 		},
 		"FileServer2_properties_typeProperties_userId": {
 			"value": "GLS\\shasuruvalli"
+		},
+		"FileServer3_properties_typeProperties_host": {
+			"value": "G:\\"
+		},
+		"FileServer3_properties_typeProperties_userId": {
+			"value": "subas"
 		},
 		"HttpServer1_properties_typeProperties_url": {
 			"value": "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports/"

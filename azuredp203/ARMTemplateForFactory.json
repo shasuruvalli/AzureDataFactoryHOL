@@ -15,6 +15,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'FileServer2'"
 		},
+		"FileServer3_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'FileServer3'"
+		},
 		"Oracle1_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'Oracle1'"
@@ -43,6 +47,14 @@
 			"type": "string",
 			"defaultValue": "GLS\\shasuruvalli"
 		},
+		"FileServer3_properties_typeProperties_host": {
+			"type": "string",
+			"defaultValue": "G:\\"
+		},
+		"FileServer3_properties_typeProperties_userId": {
+			"type": "string",
+			"defaultValue": "subas"
+		},
 		"HttpServer1_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports/"
@@ -69,7 +81,7 @@
 	},
 	"resources": [
 		{
-			"name": "[concat(parameters('factoryName'), '/MetadataDrivenCopyTask_4aj_BottomLevel')]",
+			"name": "[concat(parameters('factoryName'), '/MetadataDrivenCopyTask_kms_BottomLevel')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -182,7 +194,6 @@
 																}
 															},
 															"enableStaging": false,
-															"parallelCopies": 4,
 															"validateDataConsistency": false,
 															"translator": {
 																"value": "@json(item().CopyActivitySettings).translator",
@@ -191,7 +202,7 @@
 														},
 														"inputs": [
 															{
-																"referenceName": "MetadataDrivenCopyTask_4aj_SourceDS",
+																"referenceName": "MetadataDrivenCopyTask_kms_SourceDS",
 																"type": "DatasetReference",
 																"parameters": {
 																	"cw_schema": {
@@ -207,7 +218,7 @@
 														],
 														"outputs": [
 															{
-																"referenceName": "MetadataDrivenCopyTask_4aj_DestinationDS",
+																"referenceName": "MetadataDrivenCopyTask_kms_DestinationDS",
 																"type": "DatasetReference",
 																"parameters": {
 																	"cw_schema": {
@@ -250,7 +261,7 @@
 																"partitionOption": "None"
 															},
 															"dataset": {
-																"referenceName": "MetadataDrivenCopyTask_4aj_SourceDS",
+																"referenceName": "MetadataDrivenCopyTask_kms_SourceDS",
 																"type": "DatasetReference",
 																"parameters": {
 																	"cw_schema": {
@@ -352,7 +363,6 @@
 																}
 															},
 															"enableStaging": false,
-															"parallelCopies": 4,
 															"validateDataConsistency": false,
 															"translator": {
 																"value": "@json(item().CopyActivitySettings).translator",
@@ -361,7 +371,7 @@
 														},
 														"inputs": [
 															{
-																"referenceName": "MetadataDrivenCopyTask_4aj_SourceDS",
+																"referenceName": "MetadataDrivenCopyTask_kms_SourceDS",
 																"type": "DatasetReference",
 																"parameters": {
 																	"cw_schema": {
@@ -377,7 +387,7 @@
 														],
 														"outputs": [
 															{
-																"referenceName": "MetadataDrivenCopyTask_4aj_DestinationDS",
+																"referenceName": "MetadataDrivenCopyTask_kms_DestinationDS",
 																"type": "DatasetReference",
 																"parameters": {
 																	"cw_schema": {
@@ -412,7 +422,7 @@
 														},
 														"userProperties": [],
 														"typeProperties": {
-															"storedProcedureName": "[[dbo].[UpdateWatermarkColumnValue_4aj]",
+															"storedProcedureName": "[[dbo].[UpdateWatermarkColumnValue_kms]",
 															"storedProcedureParameters": {
 																"Id": {
 																	"value": {
@@ -519,7 +529,6 @@
 														}
 													},
 													"enableStaging": false,
-													"parallelCopies": 4,
 													"validateDataConsistency": false,
 													"translator": {
 														"value": "@json(item().CopyActivitySettings).translator",
@@ -528,7 +537,7 @@
 												},
 												"inputs": [
 													{
-														"referenceName": "MetadataDrivenCopyTask_4aj_SourceDS",
+														"referenceName": "MetadataDrivenCopyTask_kms_SourceDS",
 														"type": "DatasetReference",
 														"parameters": {
 															"cw_schema": {
@@ -544,7 +553,7 @@
 												],
 												"outputs": [
 													{
-														"referenceName": "MetadataDrivenCopyTask_4aj_DestinationDS",
+														"referenceName": "MetadataDrivenCopyTask_kms_DestinationDS",
 														"type": "DatasetReference",
 														"parameters": {
 															"cw_schema": {
@@ -575,18 +584,18 @@
 					}
 				},
 				"folder": {
-					"name": "MetadataDrivenCopyTask_4aj_20250519"
+					"name": "MetadataDrivenCopyTask_kms_20250519"
 				},
 				"annotations": []
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/MetadataDrivenCopyTask_4aj_SourceDS')]",
-				"[concat(variables('factoryId'), '/datasets/MetadataDrivenCopyTask_4aj_DestinationDS')]",
+				"[concat(variables('factoryId'), '/datasets/MetadataDrivenCopyTask_kms_SourceDS')]",
+				"[concat(variables('factoryId'), '/datasets/MetadataDrivenCopyTask_kms_DestinationDS')]",
 				"[concat(variables('factoryId'), '/linkedServices/SqlServer2')]"
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/MetadataDrivenCopyTask_4aj_MiddleLevel')]",
+			"name": "[concat(parameters('factoryName'), '/MetadataDrivenCopyTask_kms_MiddleLevel')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -629,7 +638,7 @@
 											"partitionOption": "None"
 										},
 										"dataset": {
-											"referenceName": "MetadataDrivenCopyTask_4aj_ControlDS",
+											"referenceName": "MetadataDrivenCopyTask_kms_ControlDS",
 											"type": "DatasetReference",
 											"parameters": {}
 										},
@@ -654,7 +663,7 @@
 									"userProperties": [],
 									"typeProperties": {
 										"pipeline": {
-											"referenceName": "MetadataDrivenCopyTask_4aj_BottomLevel",
+											"referenceName": "MetadataDrivenCopyTask_kms_BottomLevel",
 											"type": "PipelineReference"
 										},
 										"waitOnCompletion": true,
@@ -697,17 +706,17 @@
 					}
 				},
 				"folder": {
-					"name": "MetadataDrivenCopyTask_4aj_20250519"
+					"name": "MetadataDrivenCopyTask_kms_20250519"
 				},
 				"annotations": []
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/MetadataDrivenCopyTask_4aj_ControlDS')]",
-				"[concat(variables('factoryId'), '/pipelines/MetadataDrivenCopyTask_4aj_BottomLevel')]"
+				"[concat(variables('factoryId'), '/datasets/MetadataDrivenCopyTask_kms_ControlDS')]",
+				"[concat(variables('factoryId'), '/pipelines/MetadataDrivenCopyTask_kms_BottomLevel')]"
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/MetadataDrivenCopyTask_4aj_TopLevel')]",
+			"name": "[concat(parameters('factoryName'), '/MetadataDrivenCopyTask_kms_TopLevel')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -736,7 +745,7 @@
 								"partitionOption": "None"
 							},
 							"dataset": {
-								"referenceName": "MetadataDrivenCopyTask_4aj_ControlDS",
+								"referenceName": "MetadataDrivenCopyTask_kms_ControlDS",
 								"type": "DatasetReference",
 								"parameters": {}
 							}
@@ -773,7 +782,7 @@
 									"userProperties": [],
 									"typeProperties": {
 										"pipeline": {
-											"referenceName": "MetadataDrivenCopyTask_4aj_MiddleLevel",
+											"referenceName": "MetadataDrivenCopyTask_kms_MiddleLevel",
 											"type": "PipelineReference"
 										},
 										"waitOnCompletion": true,
@@ -823,23 +832,93 @@
 					},
 					"MaxNumberOfConcurrentTasks": {
 						"type": "Int",
-						"defaultValue": 4
+						"defaultValue": 20
 					},
 					"MainControlTableName": {
 						"type": "String",
-						"defaultValue": "dbo.JobStepControlTable"
+						"defaultValue": "dbo.JobStepMainControlTable"
 					}
 				},
 				"folder": {
-					"name": "MetadataDrivenCopyTask_4aj_20250519"
+					"name": "MetadataDrivenCopyTask_kms_20250519"
 				},
 				"annotations": [
 					"MetadataDrivenSolution"
 				]
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/MetadataDrivenCopyTask_4aj_ControlDS')]",
-				"[concat(variables('factoryId'), '/pipelines/MetadataDrivenCopyTask_4aj_MiddleLevel')]"
+				"[concat(variables('factoryId'), '/datasets/MetadataDrivenCopyTask_kms_ControlDS')]",
+				"[concat(variables('factoryId'), '/pipelines/MetadataDrivenCopyTask_kms_MiddleLevel')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/pipeline1')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Copy data1",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "SqlServerSource",
+								"queryTimeout": "02:00:00",
+								"partitionOption": "None"
+							},
+							"sink": {
+								"type": "ParquetSink",
+								"storeSettings": {
+									"type": "FileServerWriteSettings",
+									"copyBehavior": "FlattenHierarchy"
+								},
+								"formatSettings": {
+									"type": "ParquetWriteSettings"
+								}
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "SqlServerTable1",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "Parquet1",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/SqlServerTable1')]",
+				"[concat(variables('factoryId'), '/datasets/Parquet1')]"
 			]
 		},
 		{
@@ -896,7 +975,7 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/MetadataDrivenCopyTask_4aj_ControlDS')]",
+			"name": "[concat(parameters('factoryName'), '/MetadataDrivenCopyTask_kms_ControlDS')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -905,14 +984,14 @@
 					"type": "LinkedServiceReference"
 				},
 				"folder": {
-					"name": "MetadataDrivenCopyTask_4aj_20250519"
+					"name": "MetadataDrivenCopyTask_kms_20250519"
 				},
 				"annotations": [],
 				"type": "SqlServerTable",
 				"schema": [],
 				"typeProperties": {
 					"schema": "dbo",
-					"table": "JobStepControlTable"
+					"table": "JobStepMainControlTable"
 				}
 			},
 			"dependsOn": [
@@ -920,7 +999,7 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/MetadataDrivenCopyTask_4aj_DestinationDS')]",
+			"name": "[concat(parameters('factoryName'), '/MetadataDrivenCopyTask_kms_DestinationDS')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -937,7 +1016,7 @@
 					}
 				},
 				"folder": {
-					"name": "MetadataDrivenCopyTask_4aj_20250519"
+					"name": "MetadataDrivenCopyTask_kms_20250519"
 				},
 				"annotations": [],
 				"type": "SqlServerTable",
@@ -958,7 +1037,7 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/MetadataDrivenCopyTask_4aj_SourceDS')]",
+			"name": "[concat(parameters('factoryName'), '/MetadataDrivenCopyTask_kms_SourceDS')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -975,7 +1054,7 @@
 					}
 				},
 				"folder": {
-					"name": "MetadataDrivenCopyTask_4aj_20250519"
+					"name": "MetadataDrivenCopyTask_kms_20250519"
 				},
 				"annotations": [],
 				"type": "SqlServerTable",
@@ -1017,6 +1096,30 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/Parquet1')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "FileServer3",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Parquet",
+				"typeProperties": {
+					"location": {
+						"type": "FileServerLocation",
+						"fileName": "Employee.parquet"
+					},
+					"compressionCodec": "snappy"
+				},
+				"schema": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/FileServer3')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/SqlServerTable1')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -1029,8 +1132,8 @@
 				"type": "SqlServerTable",
 				"schema": [],
 				"typeProperties": {
-					"schema": "dbo",
-					"table": "Attachments"
+					"schema": "HumanResources",
+					"table": "Employee"
 				}
 			},
 			"dependsOn": [
@@ -1083,6 +1186,30 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/integrationRuntimes/SelfHosted-IR')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/FileServer3')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "FileServer",
+				"typeProperties": {
+					"host": "[parameters('FileServer3_properties_typeProperties_host')]",
+					"userId": "[parameters('FileServer3_properties_typeProperties_userId')]",
+					"password": {
+						"type": "SecureString",
+						"value": "[parameters('FileServer3_password')]"
+					}
+				},
+				"connectVia": {
+					"referenceName": "SHIR",
+					"type": "IntegrationRuntimeReference"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/integrationRuntimes/SHIR')]"
 			]
 		},
 		{
