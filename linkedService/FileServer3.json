@@ -7,7 +7,7 @@
 		"typeProperties": {
 			"host": "G:\\",
 			"userId": "Vaaruni",
-			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiIyZDdmY2QyNS1iYTM0LTRlMzMtOWE2ZC00OTBmNGI5NTU0MzIiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiJhZjg3NzU0MS1lNDZiLTRlNTctODc0NS0zZjlhNTJmYjkzMDYiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
 		},
 		"connectVia": {
 			"referenceName": "SHIR",
