@@ -2,15 +2,15 @@
 	"name": "SqlServerTable1",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "SqlServer1",
+			"referenceName": "SqlServer3",
 			"type": "LinkedServiceReference"
 		},
 		"annotations": [],
 		"type": "SqlServerTable",
 		"schema": [],
 		"typeProperties": {
-			"schema": "HumanResources",
-			"table": "Employee"
+			"schema": "dbo",
+			"table": "Employees"
 		}
 	},
 	"type": "Microsoft.DataFactory/factories/datasets"
