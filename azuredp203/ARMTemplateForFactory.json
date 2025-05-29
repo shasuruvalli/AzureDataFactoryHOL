@@ -19,6 +19,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'FileServer3'"
 		},
+		"FileServer4_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'FileServer4'"
+		},
 		"Oracle1_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'Oracle1'"
@@ -56,6 +60,14 @@
 			"defaultValue": "G:\\"
 		},
 		"FileServer3_properties_typeProperties_userId": {
+			"type": "string",
+			"defaultValue": "subas"
+		},
+		"FileServer4_properties_typeProperties_host": {
+			"type": "string",
+			"defaultValue": "G:\\"
+		},
+		"FileServer4_properties_typeProperties_userId": {
 			"type": "string",
 			"defaultValue": "subas"
 		},
@@ -1117,7 +1129,7 @@
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"linkedServiceName": {
-					"referenceName": "FileServer3",
+					"referenceName": "FileServer4",
 					"type": "LinkedServiceReference"
 				},
 				"annotations": [],
@@ -1132,7 +1144,7 @@
 				"schema": []
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/FileServer3')]"
+				"[concat(variables('factoryId'), '/linkedServices/FileServer4')]"
 			]
 		},
 		{
@@ -1217,6 +1229,30 @@
 					"password": {
 						"type": "SecureString",
 						"value": "[parameters('FileServer3_password')]"
+					}
+				},
+				"connectVia": {
+					"referenceName": "SHIR",
+					"type": "IntegrationRuntimeReference"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/integrationRuntimes/SHIR')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/FileServer4')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "FileServer",
+				"typeProperties": {
+					"host": "[parameters('FileServer4_properties_typeProperties_host')]",
+					"userId": "[parameters('FileServer4_properties_typeProperties_userId')]",
+					"password": {
+						"type": "SecureString",
+						"value": "[parameters('FileServer4_password')]"
 					}
 				},
 				"connectVia": {
@@ -1377,6 +1413,28 @@
 			"type": "Microsoft.DataFactory/factories/managedVirtualNetworks",
 			"apiVersion": "2018-06-01",
 			"properties": {},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/dataflow1')]",
+			"type": "Microsoft.DataFactory/factories/dataflows",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "MappingDataFlow",
+				"typeProperties": {
+					"sources": [
+						{
+							"name": "source1"
+						}
+					],
+					"sinks": [],
+					"transformations": [],
+					"scriptLines": [
+						"source(allowSchemaDrift: true,",
+						"     validateSchema: false) ~> source1"
+					]
+				}
+			},
 			"dependsOn": []
 		}
 	]

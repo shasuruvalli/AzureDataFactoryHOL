@@ -14,6 +14,9 @@
 		"FileServer3_password": {
 			"value": ""
 		},
+		"FileServer4_password": {
+			"value": ""
+		},
 		"Oracle1_connectionString": {
 			"value": ""
 		},
@@ -42,6 +45,12 @@
 			"value": "G:\\"
 		},
 		"FileServer3_properties_typeProperties_userId": {
+			"value": "subas"
+		},
+		"FileServer4_properties_typeProperties_host": {
+			"value": "G:\\"
+		},
+		"FileServer4_properties_typeProperties_userId": {
 			"value": "subas"
 		},
 		"HttpServer1_properties_typeProperties_url": {

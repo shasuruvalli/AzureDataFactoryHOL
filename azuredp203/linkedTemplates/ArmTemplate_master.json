@@ -19,6 +19,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'FileServer3'"
 		},
+		"FileServer4_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'FileServer4'"
+		},
 		"Oracle1_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'Oracle1'"
@@ -56,6 +60,14 @@
 			"defaultValue": "G:\\"
 		},
 		"FileServer3_properties_typeProperties_userId": {
+			"type": "string",
+			"defaultValue": "subas"
+		},
+		"FileServer4_properties_typeProperties_host": {
+			"type": "string",
+			"defaultValue": "G:\\"
+		},
+		"FileServer4_properties_typeProperties_userId": {
 			"type": "string",
 			"defaultValue": "subas"
 		},
@@ -127,6 +139,9 @@
 					"FileServer3_password": {
 						"value": "[parameters('FileServer3_password')]"
 					},
+					"FileServer4_password": {
+						"value": "[parameters('FileServer4_password')]"
+					},
 					"Oracle1_connectionString": {
 						"value": "[parameters('Oracle1_connectionString')]"
 					},
@@ -162,6 +177,12 @@
 					},
 					"FileServer3_properties_typeProperties_userId": {
 						"value": "[parameters('FileServer3_properties_typeProperties_userId')]"
+					},
+					"FileServer4_properties_typeProperties_host": {
+						"value": "[parameters('FileServer4_properties_typeProperties_host')]"
+					},
+					"FileServer4_properties_typeProperties_userId": {
+						"value": "[parameters('FileServer4_properties_typeProperties_userId')]"
 					},
 					"SqlServer2_properties_typeProperties_server": {
 						"value": "[parameters('SqlServer2_properties_typeProperties_server')]"
