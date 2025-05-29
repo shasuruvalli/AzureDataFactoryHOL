@@ -31,6 +31,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'SqlServer2'"
 		},
+		"SqlServer3_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'SqlServer3'"
+		},
 		"FileServer1_properties_typeProperties_host": {
 			"type": "string",
 			"defaultValue": "C:\\Users\\shasuruvalli\\Documents\\Destination"
@@ -68,6 +72,18 @@
 			"defaultValue": "Bronze"
 		},
 		"SqlServer2_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "adf_admin"
+		},
+		"SqlServer3_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "SUBASH"
+		},
+		"SqlServer3_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "AdventureWorks2022"
+		},
+		"SqlServer3_properties_typeProperties_userName": {
 			"type": "string",
 			"defaultValue": "adf_admin"
 		},
@@ -120,6 +136,9 @@
 					"SqlServer2_password": {
 						"value": "[parameters('SqlServer2_password')]"
 					},
+					"SqlServer3_password": {
+						"value": "[parameters('SqlServer3_password')]"
+					},
 					"HttpServer1_properties_typeProperties_url": {
 						"value": "[parameters('HttpServer1_properties_typeProperties_url')]"
 					},
@@ -152,6 +171,15 @@
 					},
 					"SqlServer2_properties_typeProperties_userName": {
 						"value": "[parameters('SqlServer2_properties_typeProperties_userName')]"
+					},
+					"SqlServer3_properties_typeProperties_server": {
+						"value": "[parameters('SqlServer3_properties_typeProperties_server')]"
+					},
+					"SqlServer3_properties_typeProperties_database": {
+						"value": "[parameters('SqlServer3_properties_typeProperties_database')]"
+					},
+					"SqlServer3_properties_typeProperties_userName": {
+						"value": "[parameters('SqlServer3_properties_typeProperties_userName')]"
 					}
 				}
 			},
