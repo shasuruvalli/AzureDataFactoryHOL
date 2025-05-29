@@ -9,8 +9,7 @@
 		"type": "Parquet",
 		"typeProperties": {
 			"location": {
-				"type": "FileServerLocation",
-				"fileName": "Employee.parquet"
+				"type": "FileServerLocation"
 			},
 			"compressionCodec": "snappy"
 		},
