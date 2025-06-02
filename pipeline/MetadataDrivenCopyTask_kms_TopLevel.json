@@ -155,7 +155,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"expression": {
-						"value": "@equals(activity('Lookup1').output.status,1)",
+						"value": "@equals(activity('Lookup1').output.firstRow.status,1)",
 						"type": "Expression"
 					},
 					"ifTrueActivities": [
