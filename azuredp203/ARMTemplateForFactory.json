@@ -981,7 +981,7 @@
 											{
 												"type": "Query",
 												"text": {
-													"value": "@concat('UPDATE dbo.JobMainControlTable SET pipeline_run_id = ' ,  pipeline().RunId , ' WHERE Id = ', activity('Lookup1').output.firstRow.Id)",
+													"value": "@concat('UPDATE dbo.JobMainControlTable SET pipeline_run_id = ' , string(pipeline().RunId ) , ' WHERE Id = ', activity('Lookup1').output.firstRow.Id)",
 													"type": "Expression"
 												}
 											}
