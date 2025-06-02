@@ -595,7 +595,7 @@
 						"typeProperties": {
 							"variableName": "error_message",
 							"value": {
-								"value": "@activity('Script1').output.error.message",
+								"value": "@activity('Script1').output.error?.message",
 								"type": "Expression"
 							}
 						}
