@@ -253,7 +253,7 @@
 							"typeProperties": {
 								"variableName": "run_id",
 								"value": {
-									"value": "@string(activity('Lookup1').output.firstRow.Id)",
+									"value": "@activity('Lookup1').output.firstRow.Id",
 									"type": "Expression"
 								}
 							}
@@ -284,7 +284,7 @@
 				"type": "Integer"
 			},
 			"run_id": {
-				"type": "String"
+				"type": "Integer"
 			}
 		},
 		"folder": {
