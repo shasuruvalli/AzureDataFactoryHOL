@@ -1077,7 +1077,7 @@
 						"typeProperties": {
 							"variableName": "error_message",
 							"value": {
-								"value": "@activity('Script1').output.errors[0].Message",
+								"value": "@activity('Script1').output.error.message",
 								"type": "Expression"
 							}
 						}
@@ -1623,6 +1623,18 @@
 			"type": "Microsoft.DataFactory/factories/managedVirtualNetworks",
 			"apiVersion": "2018-06-01",
 			"properties": {},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/pipeline2')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"annotations": []
+			},
 			"dependsOn": []
 		}
 	]
