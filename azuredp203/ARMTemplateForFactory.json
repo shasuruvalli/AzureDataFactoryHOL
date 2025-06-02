@@ -879,9 +879,12 @@
 								"partitionOption": "None"
 							},
 							"dataset": {
-								"referenceName": "SqlServerTable2",
+								"referenceName": "MetadataDrivenCopyTask_kms_DestinationDS",
 								"type": "DatasetReference",
-								"parameters": {}
+								"parameters": {
+									"cw_schema": "dbo",
+									"cw_table": "JobMainControlTable"
+								}
 							},
 							"firstRowOnly": true
 						}
@@ -1044,7 +1047,7 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/MetadataDrivenCopyTask_kms_ControlDS')]",
-				"[concat(variables('factoryId'), '/datasets/SqlServerTable2')]",
+				"[concat(variables('factoryId'), '/datasets/MetadataDrivenCopyTask_kms_DestinationDS')]",
 				"[concat(variables('factoryId'), '/pipelines/MetadataDrivenCopyTask_kms_MiddleLevel')]",
 				"[concat(variables('factoryId'), '/linkedServices/SqlServer2')]"
 			]
