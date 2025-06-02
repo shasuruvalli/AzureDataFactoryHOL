@@ -588,7 +588,7 @@
 							{
 								"activity": "Script1",
 								"dependencyConditions": [
-									"Completed"
+									"Failed"
 								]
 							}
 						],
