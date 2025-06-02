@@ -131,8 +131,12 @@
 						"partitionOption": "None"
 					},
 					"dataset": {
-						"referenceName": "SqlServerTable2",
-						"type": "DatasetReference"
+						"referenceName": "MetadataDrivenCopyTask_kms_DestinationDS",
+						"type": "DatasetReference",
+						"parameters": {
+							"cw_schema": "dbo",
+							"cw_table": "JobMainControlTable"
+						}
 					},
 					"firstRowOnly": true
 				}
