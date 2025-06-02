@@ -7,7 +7,14 @@
 				"name": "GetSumOfObjectsToCopy",
 				"description": "Count the total number of objects (tables etc.) required to be copied in this run.",
 				"type": "Lookup",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "Set variable1",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "0.12:00:00",
 					"retry": 0,
@@ -100,6 +107,23 @@
 						}
 					]
 				}
+			},
+			{
+				"name": "Set variable1",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "pipeline_run_id",
+					"value": {
+						"value": "@pipeline().RunId",
+						"type": "Expression"
+					}
+				}
 			}
 		],
 		"parameters": {
@@ -114,6 +138,11 @@
 			"MainControlTableName": {
 				"type": "String",
 				"defaultValue": "dbo.JobStepMainControlTable"
+			}
+		},
+		"variables": {
+			"pipeline_run_id": {
+				"type": "String"
 			}
 		},
 		"folder": {
