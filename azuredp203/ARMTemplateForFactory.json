@@ -872,7 +872,7 @@
 							"source": {
 								"type": "SqlServerSource",
 								"sqlReaderQuery": {
-									"value": "\nSelect NULL as Id, NULL as pipeline_run_id, 0 as status, '''9999-12-31''' as Start_datetime\nUNION\nSelect Id, pipeline_run_id, status, Start_datetime from \n[dbo].[JobMainControlTable]\norder by Start_datetime descconcat()",
+									"value": "\n'Select NULL as Id, NULL as pipeline_run_id, 0 as status, '9999-12-31' as Start_datetime\nUNION\nSelect Id, pipeline_run_id, status, Start_datetime from \n[dbo].[JobMainControlTable]\norder by Start_datetime desc",
 									"type": "Expression"
 								},
 								"queryTimeout": "02:00:00",
