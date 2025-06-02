@@ -1130,11 +1130,152 @@
 			"properties": {
 				"activities": [
 					{
-						"name": "OnAllSuccess",
+						"name": "Untill Counter",
+						"type": "Until",
+						"dependsOn": [],
+						"userProperties": [],
+						"typeProperties": {
+							"expression": {
+								"value": "@or(equals(2,int(variables('Counter'))),not(equals(variables('ErrorHandling'),'')))",
+								"type": "Expression"
+							},
+							"activities": [
+								{
+									"name": "Wait",
+									"type": "Wait",
+									"dependsOn": [
+										{
+											"activity": "Set Assignments",
+											"dependencyConditions": [
+												"Succeeded"
+											]
+										}
+									],
+									"userProperties": [],
+									"typeProperties": {
+										"waitTimeInSeconds": 1
+									}
+								},
+								{
+									"name": "SetTempCounter",
+									"type": "SetVariable",
+									"dependsOn": [
+										{
+											"activity": "Wait",
+											"dependencyConditions": [
+												"Succeeded"
+											]
+										}
+									],
+									"policy": {
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"variableName": "TempCounter",
+										"value": {
+											"value": "@string(add(int(variables('Counter')),1))",
+											"type": "Expression"
+										}
+									}
+								},
+								{
+									"name": "SetCounter",
+									"type": "SetVariable",
+									"dependsOn": [
+										{
+											"activity": "SetTempCounter",
+											"dependencyConditions": [
+												"Succeeded"
+											]
+										}
+									],
+									"policy": {
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"variableName": "Counter",
+										"value": {
+											"value": "@variables('TempCounter')",
+											"type": "Expression"
+										}
+									}
+								},
+								{
+									"name": "Set Assignments",
+									"type": "SetVariable",
+									"dependsOn": [],
+									"policy": {
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"variableName": "DummyFailure",
+										"value": {
+											"value": "@pipeline().parameters.Test",
+											"type": "Expression"
+										}
+									}
+								},
+								{
+									"name": "ErrorHandling",
+									"type": "SetVariable",
+									"dependsOn": [
+										{
+											"activity": "Wait",
+											"dependencyConditions": [
+												"Completed",
+												"Skipped"
+											]
+										},
+										{
+											"activity": "Set Assignments",
+											"dependencyConditions": [
+												"Completed"
+											]
+										},
+										{
+											"activity": "SetTempCounter",
+											"dependencyConditions": [
+												"Skipped",
+												"Completed"
+											]
+										},
+										{
+											"activity": "SetCounter",
+											"dependencyConditions": [
+												"Failed",
+												"Skipped"
+											]
+										}
+									],
+									"policy": {
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"variableName": "ErrorHandling",
+										"value": {
+											"value": "@concat(activity('Set Assignments').error?.message,'^|',activity('Wait')?.error?.message,'^|',activity('SetTempCounter')?.error?.message,'^|',activity('SetCounter')?.error?.message)",
+											"type": "Expression"
+										}
+									}
+								}
+							],
+							"timeout": "0.12:00:00"
+						}
+					},
+					{
+						"name": "ExitWait",
 						"type": "Wait",
 						"dependsOn": [
 							{
-								"activity": "Act_3",
+								"activity": "Untill Counter",
 								"dependencyConditions": [
 									"Succeeded"
 								]
@@ -1144,170 +1285,34 @@
 						"typeProperties": {
 							"waitTimeInSeconds": 1
 						}
-					},
-					{
-						"name": "Act_1",
-						"type": "SetVariable",
-						"dependsOn": [],
-						"policy": {
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"variableName": "Act_1",
-							"value": {
-								"value": "@pipeline().parameters.Act_1",
-								"type": "Expression"
-							}
-						}
-					},
-					{
-						"name": "Act_2",
-						"type": "SetVariable",
-						"dependsOn": [
-							{
-								"activity": "Act_1",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"variableName": "Act_2",
-							"value": {
-								"value": "@pipeline().parameters.Act_2",
-								"type": "Expression"
-							}
-						}
-					},
-					{
-						"name": "Act_3",
-						"type": "SetVariable",
-						"dependsOn": [
-							{
-								"activity": "Act_2",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"variableName": "Act_3",
-							"value": {
-								"value": "@pipeline().parameters.Act_3",
-								"type": "Expression"
-							}
-						}
-					},
-					{
-						"name": "OnAny1TaskFailure",
-						"type": "SetVariable",
-						"dependsOn": [
-							{
-								"activity": "Act_1",
-								"dependencyConditions": [
-									"Completed"
-								]
-							},
-							{
-								"activity": "Act_2",
-								"dependencyConditions": [
-									"Completed",
-									"Skipped"
-								]
-							},
-							{
-								"activity": "Act_3",
-								"dependencyConditions": [
-									"Failed",
-									"Skipped"
-								]
-							}
-						],
-						"policy": {
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"variableName": "ErrorMsg",
-							"value": {
-								"value": "@concat(activity('Act_1').error?.message,'^|',activity('Act_2')?.error?.message,'^|',activity('Act_3')?.error?.message)",
-								"type": "Expression"
-							}
-						}
-					},
-					{
-						"name": "SetArrayErrorMsg",
-						"type": "SetVariable",
-						"dependsOn": [
-							{
-								"activity": "OnAny1TaskFailure",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"variableName": "ErrorMsgArray",
-							"value": {
-								"value": "@split(variables('ErrorMsg'),'^|')",
-								"type": "Expression"
-							}
-						}
 					}
 				],
 				"policy": {
 					"elapsedTimeMetric": {}
 				},
 				"parameters": {
-					"Act_1": {
-						"type": "string",
-						"defaultValue": "1"
-					},
-					"Act_2": {
-						"type": "string",
-						"defaultValue": "2"
-					},
-					"Act_3": {
+					"Test": {
 						"type": "string"
 					}
 				},
 				"variables": {
-					"ErrorMsg": {
+					"Counter": {
+						"type": "String",
+						"defaultValue": "0"
+					},
+					"TempCounter": {
+						"type": "String",
+						"defaultValue": "0"
+					},
+					"ErrorHandling": {
 						"type": "String"
 					},
-					"ErrorMsgArray": {
+					"DummyFailure": {
 						"type": "Array"
-					},
-					"Act_1": {
-						"type": "String"
-					},
-					"Act_2": {
-						"type": "String"
-					},
-					"Act_3": {
-						"type": "String"
 					}
 				},
 				"annotations": [],
-				"lastPublishTime": "2021-08-19T06:23:24Z"
+				"lastPublishTime": "2022-08-30T09:18:36Z"
 			},
 			"dependsOn": []
 		},
