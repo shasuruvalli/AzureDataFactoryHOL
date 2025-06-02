@@ -257,6 +257,23 @@
 									"type": "Expression"
 								}
 							}
+						},
+						{
+							"name": "Fail1",
+							"type": "Fail",
+							"dependsOn": [
+								{
+									"activity": "Script1",
+									"dependencyConditions": [
+										"Completed"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"message": "intentionally failed",
+								"errorCode": "100"
+							}
 						}
 					]
 				}
