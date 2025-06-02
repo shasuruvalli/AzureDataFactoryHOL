@@ -253,26 +253,9 @@
 							"typeProperties": {
 								"variableName": "run_id",
 								"value": {
-									"value": "@activity('Lookup1').output.firstRow.Id",
+									"value": "@string(activity('Lookup1').output.firstRow.Id)",
 									"type": "Expression"
 								}
-							}
-						},
-						{
-							"name": "Fail1",
-							"type": "Fail",
-							"dependsOn": [
-								{
-									"activity": "Script1",
-									"dependencyConditions": [
-										"Completed"
-									]
-								}
-							],
-							"userProperties": [],
-							"typeProperties": {
-								"message": "intentionally failed",
-								"errorCode": "100"
 							}
 						}
 					]
