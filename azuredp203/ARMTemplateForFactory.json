@@ -1001,7 +1001,7 @@
 									"typeProperties": {
 										"variableName": "run_id",
 										"value": {
-											"value": "@activity('Lookup1').output.firstRow.Id",
+											"value": "@string(activity('Lookup1').output.firstRow.Id)",
 											"type": "Expression"
 										}
 									}
