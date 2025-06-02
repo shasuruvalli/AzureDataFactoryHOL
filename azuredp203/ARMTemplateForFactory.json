@@ -756,7 +756,7 @@
 						"type": "Lookup",
 						"dependsOn": [
 							{
-								"activity": "Set variable1",
+								"activity": "If Condition1",
 								"dependencyConditions": [
 									"Completed"
 								]
@@ -857,20 +857,150 @@
 						}
 					},
 					{
-						"name": "Set variable1",
-						"type": "SetVariable",
+						"name": "Lookup1",
+						"type": "Lookup",
 						"dependsOn": [],
 						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
 							"secureOutput": false,
 							"secureInput": false
 						},
 						"userProperties": [],
 						"typeProperties": {
-							"variableName": "pipeline_run_id",
-							"value": {
-								"value": "@pipeline().RunId",
-								"type": "Expression"
+							"source": {
+								"type": "SqlServerSource",
+								"sqlReaderQuery": "Select Id, pipeline_run_id, status from \n[dbo].[JobMainControlTable]\norder by Start_datetime desc",
+								"queryTimeout": "02:00:00",
+								"partitionOption": "None"
+							},
+							"dataset": {
+								"referenceName": "SqlServerTable2",
+								"type": "DatasetReference",
+								"parameters": {}
+							},
+							"firstRowOnly": true
+						}
+					},
+					{
+						"name": "If Condition1",
+						"type": "IfCondition",
+						"dependsOn": [
+							{
+								"activity": "Lookup1",
+								"dependencyConditions": [
+									"Completed"
+								]
 							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"expression": {
+								"value": "@equals(activity('Lookup1').output.status,1)",
+								"type": "Expression"
+							},
+							"ifTrueActivities": [
+								{
+									"name": "var_set_pipeline_id",
+									"type": "SetVariable",
+									"dependsOn": [],
+									"policy": {
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"variableName": "pipeline_run_id",
+										"value": {
+											"value": "@activity('Lookup1').output.firstRow.pipeline_run_id",
+											"type": "Expression"
+										}
+									}
+								},
+								{
+									"name": "var_set_status",
+									"type": "SetVariable",
+									"dependsOn": [],
+									"policy": {
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"variableName": "status",
+										"value": {
+											"value": "@activity('Lookup1').output.firstRow.status",
+											"type": "Expression"
+										}
+									}
+								},
+								{
+									"name": "Script1",
+									"type": "Script",
+									"dependsOn": [
+										{
+											"activity": "var_set_status",
+											"dependencyConditions": [
+												"Succeeded"
+											]
+										},
+										{
+											"activity": "var_set_pipeline_id",
+											"dependencyConditions": [
+												"Succeeded"
+											]
+										},
+										{
+											"activity": "var_set_run_id",
+											"dependencyConditions": [
+												"Succeeded"
+											]
+										}
+									],
+									"policy": {
+										"timeout": "0.12:00:00",
+										"retry": 0,
+										"retryIntervalInSeconds": 30,
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"userProperties": [],
+									"linkedServiceName": {
+										"referenceName": "SqlServer2",
+										"type": "LinkedServiceReference"
+									},
+									"typeProperties": {
+										"scripts": [
+											{
+												"type": "Query",
+												"text": {
+													"value": "@concat('UPDATE dbo.JobMainControlTable SET pipeline_run_id = ' ,  pipeline().RunId , ' WHERE Id = ', activity('Lookup1').output.firstRow.Id)",
+													"type": "Expression"
+												}
+											}
+										],
+										"scriptBlockExecutionTimeout": "02:00:00"
+									}
+								},
+								{
+									"name": "var_set_run_id",
+									"type": "SetVariable",
+									"dependsOn": [],
+									"policy": {
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"variableName": "run_id",
+										"value": {
+											"value": "@activity('Lookup1').output.firstRow.Id",
+											"type": "Expression"
+										}
+									}
+								}
+							]
 						}
 					}
 				],
@@ -894,6 +1024,12 @@
 				"variables": {
 					"pipeline_run_id": {
 						"type": "String"
+					},
+					"status": {
+						"type": "Integer"
+					},
+					"run_id": {
+						"type": "String"
 					}
 				},
 				"folder": {
@@ -905,7 +1041,9 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/MetadataDrivenCopyTask_kms_ControlDS')]",
-				"[concat(variables('factoryId'), '/pipelines/MetadataDrivenCopyTask_kms_MiddleLevel')]"
+				"[concat(variables('factoryId'), '/datasets/SqlServerTable2')]",
+				"[concat(variables('factoryId'), '/pipelines/MetadataDrivenCopyTask_kms_MiddleLevel')]",
+				"[concat(variables('factoryId'), '/linkedServices/SqlServer2')]"
 			]
 		},
 		{
