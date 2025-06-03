@@ -10,7 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "FileServerLocation",
-				"fileName": "business-financial-data-december-2024-quarter-csv.csv"
+				"fileName": "customers-100.csv"
 			},
 			"columnDelimiter": ",",
 			"rowDelimiter": "\n",
